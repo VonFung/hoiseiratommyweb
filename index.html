@@ -36,6 +36,7 @@ body {font-family: Arial;}
 
 .tabcontent {
     display: none;
+    overflow: scroll;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
@@ -63,7 +64,8 @@ body {font-family: Arial;}
     padding: 14px 1%;
     transition: 0.3s;
     font-size: 17px;
-    width: 48%;
+    width: 50%;
+    height: 100%
     text-align: center;
 }
 
@@ -83,20 +85,25 @@ body {font-family: Arial;}
 <p>Click on the buttons inside the tabbed menu:</p>-->
 
 <div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'Events')">Events</button>
-  <button class="tablinks" onclick="openTab(event, 'Votes')">Votes</button>
+  <button class="tablinks" onclick="openTop(event, 'Events_Top')">Events</button>
+  <button class="tablinks" onclick="openTop(event, 'Votes_Top')">Votes</button>
 </div>
 
-<div id="Events" class="tabcontent">
+<div id="Events_Top" class="tabcontent">
   <h3>London</h3>
   <p>London is the capital city of England.</p>
   <p>blablablabla</p>
   <p>blablabla</p>
 </div>
 
-<div id="Votes" class="tabcontent">
+<div id="Votes_Top" class="tabcontent">
   <h3>Paris</h3>
   <p>Paris is the capital of France.</p> 
+  <button class="test" onclick="openDetail(event, 'Vote_Detail')">Details</button>
+</div>
+
+<div id="Vote_Detail" class="tabcontent">
+	
 </div>
 
 <div class="bottombuttons">
@@ -105,18 +112,46 @@ body {font-family: Arial;}
 </div>
 
 <script>
-function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
+function openTop(evt, tabName) {
+		var i, tablinks;
+    clearViewport();
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    		tablinks[i].className = tablinks[i].className.replace("active", "");
     }
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
+}
+
+function openDetail(evt, tabName) {
+		var i;
+		clearViewport();
+    var parentTab = document.getElementById(tabName);
+    parentTab.style.display = "block";
+    for (i = 0; i < 20; i++) {
+    		let html = "<button class=\"detail_btn\" onclick=\"\">" + i + "</button>";
+    		addElement(tabName, "P", "detail_" + i, html);
+    }
+}
+
+function clearViewport() {
+		var i, tabcontents;
+		tabcontents = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontents.length; i++) {
+    		tabcontents[i].style.display = "none";
+    }
+    var vote_detail_tab = document.getElementById("Vote_Detail");
+    while(vote_detail_tab.hasChildNodes()) {
+    		vote_detail_tab.removeChild(vote_detail_tab.firstChild);
+    }
+}
+
+function addElement(parentId, elementTag, elementId, html) {
+    var p = document.getElementById(parentId);
+    var newElement = document.createElement(elementTag);
+    newElement.setAttribute('id', elementId);
+    newElement.innerHTML = html;
+    p.appendChild(newElement);
 }
 </script>
      
