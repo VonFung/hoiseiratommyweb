@@ -6,7 +6,7 @@
 body {font-family: Arial;}
 
 html,body {
-    height:100%;
+    height:95%;
 }
 
 .tab {
@@ -45,17 +45,16 @@ html,body {
     border: 1px solid #ccc;
     border-top: none;
     max-width: 1056px;
+    min-height: calc(100% - 100px);
     max-height: calc(100% - 100px);
 }
 
 .bottombuttons {
-		position: fixed;
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
     bottom: 5px;
     height: 50px;
-    width: 98%;
     max-width: 1080px;
 }
 
@@ -93,6 +92,8 @@ html,body {
   <button class="tablinks" onclick="openTop(event, 'Votes_Top')">Votes</button>
 </div>
 
+<div id="blank" class="tabcontent" style=display:block>
+</div>
 <div id="Events_Top" class="tabcontent">
   <h3>London</h3>
   <p>London is the capital city of England.</p>
