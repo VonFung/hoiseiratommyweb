@@ -7,7 +7,7 @@
   $sql = "SELECT * FROM musiclist WHERE CODE LIKE '%OR%'";
   $result = mysql_query($sql) or die('MySQL query error');
   $rows = array();
-  while($r = mysqli_fetch_assoc($result)) {
+  while($r = mysql_fetch_assoc($result)) {
       $rows[] = $r;
   }
   echo json_encode($rows);
