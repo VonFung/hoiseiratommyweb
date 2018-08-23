@@ -1,4 +1,4 @@
 <?php
-  include('config.php');
-  echo $db_host;
+  $database = include('config.php');
+  echo $database['host'];
 ?>
