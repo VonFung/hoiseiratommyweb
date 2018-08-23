@@ -1,6 +1,9 @@
 <?php
   $database = include('config.php');
 
+  echo $database['host'];
+  echo $database['username'];
+  echo $database['password'];
   $conn = mysql_connect($database['host'], $database['username'], $database['password']) or die('Error with MySQL connection');
   mysql_query("SET NAMES 'utf8'");
   mysql_select_db($database['database']);
