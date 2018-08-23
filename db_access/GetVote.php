@@ -1,3 +1,4 @@
 <?php
-echo "test";
+  include('config.php');
+  echo $db_host;
 ?>
