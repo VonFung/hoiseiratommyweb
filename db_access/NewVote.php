@@ -18,6 +18,7 @@
   }
   $sql = $sql . "'" . $expire_date . "', " . $create_user_id . ")";
   
+  echo $sql;
   $result = mysql_query($sql) or die('MySQL query error');
   if($result) {
     echo "success";
