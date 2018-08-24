@@ -7,9 +7,9 @@
   mysql_select_db($database['database']);
   $sql = "SELECT id, TITLE, DESCRIPTION FROM vote WHERE HIDED = FALSE";
   if(!$expire) {
-    $sql += " AND EXPIRE_DATE >= DATE(CURDATE())";
+    $sql = $sql + " AND EXPIRE_DATE >= DATE(CURDATE())";
   }
-  $sql += " ORDER BY ID DESC";
+  $sql = $sql + " ORDER BY ID DESC";
   echo $sql;
   $result = mysql_query($sql) or die('MySQL query error');
   $rows = array();
