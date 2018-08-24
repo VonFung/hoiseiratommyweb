@@ -12,13 +12,12 @@
   if($has_max_vote) {
     $sql = $sql . "MAX_VOTE, ";
   }
-  $sql = $sql . "EXPIRE_DATE, CREATE_USER_ID) VALUES ('" . $title . ", ";
+  $sql = $sql . "EXPIRE_DATE, CREATE_USER_ID) VALUES ('" . $title . "', ";
   if($has_max_vote) {
     $sql = $sql . $_POST["max_vote"] . ", ";
   }
   $sql = $sql . "'" . $expire_date . "', " . $create_user_id . ")";
   
-  echo $sql;
   $result = mysql_query($sql) or die('MySQL query error');
   if($result) {
     echo "success";
