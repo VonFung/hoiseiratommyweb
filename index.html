@@ -155,8 +155,9 @@ function openDetail(evt, tabName) {
 				if (this.readyState == 4 && this.status == 200) {
 						var result = JSON.parse(this.responseText);
 						for (i = 0; i < result.length; i++) {
-								let html = "<button class=\"detail_btn\" onclick=\"\">" + result[i].TITLE + "</button><br />";
+								let html = "<button class=\"detail_btn\" onclick=\"\">" + result[i].TITLE + "</button>";
     						addElement(tabName, "P", "detail_" + i, html);
+								addElement(tabName, "P", "", "<br>");
 						}
 						addElement(tabName, "P", "add_vote_btn", "<button class=\"detail_btn\" onclick=\"\">Add Vote</button>");
 				}
