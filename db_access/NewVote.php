@@ -10,13 +10,13 @@
   mysql_select_db($database['database']);
   $sql = "INSERT INTO vote (TITLE, ";
   if($has_max_vote) {
-    $sql .= "MAX_VOTE, ";
+    $sql = $sql . "MAX_VOTE, ";
   }
-  $sql .= "EXPIRE_DATE, CREATE_USER_ID) VALUES ('" . $title . ", ";
+  $sql = $sql . "EXPIRE_DATE, CREATE_USER_ID) VALUES ('" . $title . ", ";
   if($has_max_vote) {
-    $sql .= $_POST["max_vote"] . ", ";
+    $sql = $sql . $_POST["max_vote"] . ", ";
   }
-  $sql .= "'" . $expire_date . "', " . $create_user_id . ")";
+  $sql = $sql . "'" . $expire_date . "', " . $create_user_id . ")";
   
   $result = mysql_query($sql) or die('MySQL query error');
   if($result) {
