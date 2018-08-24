@@ -148,9 +148,9 @@ function openDetail(evt, tabName) {
 				}
 		};
 		xmlhttp.open("POST", "/db_access/GetVote.php", true);
-		xmlhttp.setRequestHeader("Content-type", "application/json");
-		xmlhttp.send(JSON.stringify(param));
-		//xmlhttp.send("expire=1");
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		//xmlhttp.send(JSON.stringify(param));
+		xmlhttp.send("expire=1");
 }
 
 function clearViewport() {
