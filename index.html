@@ -132,10 +132,27 @@ function openDetail(evt, tabName) {
 		clearViewport();
     var parentTab = document.getElementById(tabName);
     parentTab.style.display = "block";
-    for (i = 0; i < 20; i++) {
+    /*for (i = 0; i < 20; i++) {
     		let html = "<button class=\"detail_btn\" onclick=\"\">" + i + "</button>";
     		addElement(tabName, "P", "detail_" + i, html);
-    }
+    }*/
+		$.ajax({
+    url: "/db_access/GetVote.php",
+    data: {
+        expire : 0
+    },
+    type:"POST",
+    dataType:'text',
+    success: function(msg){
+			for(i = 0; i<msg.length; i++) {
+				let html = "<button class=\"detail_btn\" onclick=\"\">" + msg[i].TITLE + "</button>";
+				addElement(tabName, "P", "detail_" + i, html);	
+			}
+    },
+    error:function(xhr, ajaxOptions, thrownError){ 
+			
+    }                
+});
 }
 
 function clearViewport() {
