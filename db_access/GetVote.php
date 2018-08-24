@@ -10,6 +10,7 @@
     $sql += " AND EXPIRE_DATE >= DATE(CURDATE())";
   }
   $sql += " ORDER BY ID DESC";
+  echo $sql;
   $result = mysql_query($sql) or die('MySQL query error');
   $rows = array();
   while($r = mysql_fetch_assoc($result)) {
