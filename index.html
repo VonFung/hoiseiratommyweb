@@ -136,25 +136,21 @@ function openDetail(evt, tabName) {
     		let html = "<button class=\"detail_btn\" onclick=\"\">" + i + "</button>";
     		addElement(tabName, "P", "detail_" + i, html);
     }*/
-		$.ajax({
-    url: "/db_access/GetVote.php",
-    data: {
-        expire : 0
-    },
-    type:"POST",
-    dataType:"json",
-    success: function(data){
-	    		alert("Success!");
-			var votes = data["json"];
-			for(i = 0; i<votes.length; i++) {
-				let html = "<button class=\"detail_btn\" onclick=\"\">" + votes[i].TITLE + "</button>";
-				addElement(tabName, "P", "detail_" + i, html);	
-			}
-    },
-    error:function(xhr, ajaxOptions, thrownError){ 
-			alert("Something error!");
-    }                
-});
+		var xmlhttp = new XMLHttpRequest();
+		var obj = { expire: 1 };
+		var dbParam = JSON.stringify(obj);
+		xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+						var myObj = JSON.parse(this.responseText);
+						for (i = 0; i < myObj.length; i++) {
+								let html = "<button class=\"detail_btn\" onclick=\"\">" + myObj[i].TITLE + "</button>";
+    						addElement(tabName, "P", "detail_" + i, html);
+						}
+				}
+		};
+		xmlhttp.open("POST", "/db_access/GetVote.php", true);
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlhttp.send("x=" + dbParam);
 }
 
 function clearViewport() {
