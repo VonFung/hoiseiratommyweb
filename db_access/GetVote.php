@@ -5,7 +5,7 @@
   $conn = mysql_connect($database['host'], $database['username'], $database['password']) or die('Error with MySQL connection');
   mysql_query("SET NAMES 'utf8'");
   mysql_select_db($database['database']);
-  $sql = "SELECT id, TITLE, DESCRIPTION FROM vote WHERE HIDED = FALSE";
+  $sql = "SELECT id, TITLE, EXPIRE_DATE, DESCRIPTION FROM vote WHERE HIDED = FALSE";
   if(!$expire) {
     $sql = $sql . " AND EXPIRE_DATE >= DATE(CURDATE())";
   }
