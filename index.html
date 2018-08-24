@@ -144,6 +144,7 @@ function openDetail(evt, tabName) {
     type:"POST",
     dataType:"json",
     success: function(data){
+	    		alert("Success!");
 			var votes = data["json"];
 			for(i = 0; i<votes.length; i++) {
 				let html = "<button class=\"detail_btn\" onclick=\"\">" + votes[i].TITLE + "</button>";
