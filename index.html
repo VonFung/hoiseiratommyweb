@@ -137,20 +137,19 @@ function openDetail(evt, tabName) {
     		addElement(tabName, "P", "detail_" + i, html);
     }*/
 		var xmlhttp = new XMLHttpRequest();
-		var obj = { expire: 1 };
-		var dbParam = JSON.stringify(obj);
+		var param = { expire: 1 };
 		xmlhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
-						var myObj = JSON.parse(this.responseText);
-						for (i = 0; i < myObj.length; i++) {
-								let html = "<button class=\"detail_btn\" onclick=\"\">" + myObj[i].TITLE + "</button>";
+						var result = JSON.parse(this.responseText);
+						for (i = 0; i < result.length; i++) {
+								let html = "<button class=\"detail_btn\" onclick=\"\">" + result[i].TITLE + "</button>";
     						addElement(tabName, "P", "detail_" + i, html);
 						}
 				}
 		};
 		xmlhttp.open("POST", "/db_access/GetVote.php", true);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xmlhttp.send("expire=1");
+		xmlhttp.send(JSON.stringify(param));
 }
 
 function clearViewport() {
